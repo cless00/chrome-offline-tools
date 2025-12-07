@@ -1,0 +1,695 @@
+:root {
+    --bg-color: #0f172a;
+    --card-bg: #1e293b;
+    --text-primary: #f8fafc;
+    --text-secondary: #94a3b8;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --danger: #ef4444;
+    --success: #22c55e;
+    --border-radius: 12px;
+    --transition: 0.2s ease;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    padding: 0;
+    /* App-like feel */
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: block;
+    /* Removed flex centering */
+    overflow-x: hidden;
+}
+
+#app {
+    width: 100%;
+    max-width: 100%;
+    /* Full Width */
+    background: transparent;
+    /* Remove card bg */
+    border: none;
+    box-shadow: none;
+    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Header - Sticky */
+.app-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 23, 42, 0.95);
+    /* Header bg */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--accent);
+}
+
+.nav-btn {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-left: 10px;
+    transition: var(--transition);
+}
+
+.nav-btn:hover,
+.nav-btn.active {
+    color: var(--text-primary);
+}
+
+.content-area {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+}
+
+/* Views */
+.view {
+    display: none;
+    animation: fadeIn 0.3s ease;
+    height: 100%;
+    /* Fill content area */
+}
+
+.view.active {
+    display: block;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Cards */
+.card {
+    background: var(--card-bg);
+    border-radius: var(--border-radius);
+    padding: 1.2rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    height: 100%;
+    /* Full height */
+    display: flex;
+    flex-direction: column;
+}
+
+h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+    flex-shrink: 0;
+}
+
+.description {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+/* Password Display */
+.password-display-container {
+    background: rgba(0, 0, 0, 0.3);
+    padding: 1rem;
+    border-radius: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    flex-shrink: 0;
+    /* Keep display fixed size */
+}
+
+.password-output {
+    font-family: 'Courier New', monospace;
+    font-size: 1.2rem;
+    word-break: break-all;
+    color: var(--success);
+    font-weight: 600;
+    white-space: pre-wrap;
+    /* Allow newlines */
+    max-height: 150px;
+    /* Limit height */
+    overflow-y: auto;
+    /* Scroll if too long */
+    width: 100%;
+    /* Ensure full width */
+}
+
+.password-output.batch-mode {
+    font-size: 0.9rem;
+    /* Smaller font for list */
+    line-height: 1.5;
+}
+
+.icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    opacity: 0.7;
+    transition: var(--transition);
+}
+
+.icon-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+#copy-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 1.2rem;
+    color: white;
+    opacity: 0.8;
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    flex-shrink: 0;
+    padding: 8px;
+}
+
+#copy-btn:hover {
+    opacity: 1;
+    transform: scale(1.1);
+}
+
+/* Controls */
+.controls {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    /* Take remaining space */
+}
+
+.control-group {
+    margin-bottom: 1rem;
+}
+
+.checkbox-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+}
+
+label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.3rem;
+    cursor: pointer;
+}
+
+input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+}
+
+input[type="number"],
+input[type="text"] {
+    width: 100%;
+    padding: 0.6rem;
+    border-radius: 6px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--text-primary);
+    outline: none;
+}
+
+input[type="number"]:focus,
+input[type="text"]:focus {
+    border-color: var(--accent);
+}
+
+/* Buttons */
+.primary-btn {
+    width: auto;
+    /* Changed from 100% */
+    padding: 0.8rem 1.5rem;
+    /* Increased horizontal padding */
+    background: var(--accent);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    /* margin-top: auto; Remove this if it acts weird in flex row */
+}
+
+.primary-btn:hover {
+    background: #3b82f6;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.secondary-btn {
+    width: auto;
+    /* Changed from 100% */
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    cursor: pointer;
+    transition: var(--transition);
+    font-weight: 500;
+}
+
+/* JSON Tools Styles */
+/* Code Editor & Syntax Highlighting */
+.editor-container {
+    position: relative;
+    width: 100%;
+    height: 300px;
+    margin-top: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    background: rgba(0, 0, 0, 0.3);
+    overflow: hidden;
+    /* Hide container overflow, scrollbars managed by children */
+}
+
+/* Common Text Styles */
+.editor-container textarea,
+.editor-container pre {
+    margin: 0;
+    padding: 1rem;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.9rem;
+    line-height: 1.5;
+    box-sizing: border-box;
+    white-space: pre;
+    overflow: auto;
+    /* Both scrollable */
+    word-wrap: normal;
+}
+
+/* Syntax Highlighting Layer (Behind) */
+.editor-container pre {
+    z-index: 1;
+    pointer-events: none;
+    /* Let clicks pass through to textarea */
+    color: var(--text-code);
+}
+
+.editor-container code {
+    font-family: inherit;
+}
+
+/* Syntax Colors */
+.token-string {
+    color: #ce9178;
+}
+
+/* Orange/Brown */
+.token-number {
+    color: #b5cea8;
+}
+
+/* Light Green */
+.token-boolean {
+    color: #569cd6;
+}
+
+/* Blue */
+.token-null {
+    color: #569cd6;
+}
+
+/* Blue */
+.token-key {
+    color: #9cdcfe;
+}
+
+/* Light Blue */
+.token-punctuation {
+    color: #d4d4d4;
+}
+
+/* Gray/White */
+
+/* Input Layer (Front) */
+.code-editor {
+    z-index: 2;
+    background: transparent;
+    color: transparent;
+    /* Text is invisible */
+    caret-color: white;
+    /* Cursor remains visible */
+    resize: none;
+    outline: none;
+}
+
+.code-editor:focus {
+    /* Focus styling handled by container border if needed, 
+       but here we might want to highlight the container */
+    outline: none;
+}
+
+/* Ensure selection is visible despite transparent text */
+.code-editor::selection {
+    background: rgba(255, 255, 255, 0.2);
+    color: transparent;
+}
+
+.button-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 0.5rem;
+    flex-wrap: wrap;
+}
+
+/* Tree View Styles */
+.tree-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Monaco', 'Menlo', monospace;
+    font-size: 0.9rem;
+    user-select: text;
+}
+
+.tree-table th,
+.tree-table td {
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 6px 10px;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.tree-table th {
+    background-color: rgba(6, 182, 212, 0.2);
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+.tree-row {
+    transition: background-color 0.1s;
+}
+
+.tree-row:hover {
+    background-color: rgba(255, 255, 255, 0.03);
+}
+
+/* Tree Level Colors */
+/* Increased contrast for better visibility */
+.tree-row[data-level="0"] {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.tree-row[data-level="1"] {
+    background-color: rgba(255, 255, 255, 0.10);
+}
+
+.tree-row[data-level="2"] {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.tree-row[data-level="3"] {
+    background-color: rgba(255, 255, 255, 0.20);
+}
+
+.tree-row[data-level="4"] {
+    background-color: rgba(255, 255, 255, 0.25);
+}
+
+.tree-row[data-level="5"] {
+    background-color: rgba(255, 255, 255, 0.30);
+}
+
+.tree-row.hidden {
+    display: none;
+}
+
+.tree-key {
+    color: var(--text-primary);
+    width: 60%;
+}
+
+.tree-value {
+    color: var(--text-code);
+    position: relative;
+    /* For absolute button positioning if needed, or flex */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 27px;
+    /* Ensure height matches key column */
+}
+
+.value-text {
+    flex-grow: 1;
+    min-height: 1em;
+    /* Ensure it takes up vertical space */
+}
+
+.row-actions {
+    display: none;
+    gap: 6px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    /* Removed solid background to fix "different color" issue. 
+       Rely on row hover background. */
+    background: transparent;
+    padding-left: 10px;
+    flex-shrink: 0;
+}
+
+.tree-row:hover .row-actions {
+    display: flex;
+}
+
+.btn-icon {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    color: var(--text-primary);
+    cursor: pointer;
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    /* Bigger padding for label look */
+    border-radius: 12px;
+    /* Pill shape */
+    transition: 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    opacity: 0.9;
+}
+
+.btn-icon:hover {
+    opacity: 1;
+    background-color: var(--accent-color);
+    /* Highlight on hover */
+    color: white;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.tree-toggle {
+    background: none;
+    border: none;
+    color: var(--primary-color);
+    cursor: pointer;
+    font-size: 0.8rem;
+    width: 20px;
+    margin-right: 5px;
+    transition: transform 0.2s;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tree-toggle.expanded {
+    transform: rotate(90deg);
+}
+
+/* Selection Modes - Removed */
+
+.tree-spacer {
+    display: inline-block;
+    width: 20px;
+    margin-right: 5px;
+}
+
+.key-name {
+    font-weight: 600;
+    margin-right: 0.5rem;
+}
+
+.val-type {
+    color: rgba(255, 255, 255, 0.4);
+    font-style: italic;
+    font-size: 0.8em;
+}
+
+.val-null {
+    color: #f87171;
+    font-style: italic;
+}
+
+.val-bool {
+    color: #f472b6;
+    font-weight: bold;
+}
+
+.val-num {
+    color: #60a5fa;
+}
+
+.val-str {
+    color: #facc15;
+}
+
+.input-group {
+    display: flex;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+}
+
+/* Batch Output */
+.batch-output {
+    margin-top: 1rem;
+    max-height: 150px;
+    overflow-y: auto;
+    font-family: monospace;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    background: rgba(0, 0, 0, 0.2);
+    padding: 0.5rem;
+    border-radius: 6px;
+}
+
+.batch-output.hidden {
+    display: none;
+}
+
+.batch-item {
+    padding: 0.2rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Exposed List */
+.exposed-list {
+    list-style: none;
+    max-height: 200px;
+    overflow-y: auto;
+}
+
+.exposed-item {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.5rem;
+    background: rgba(255, 255, 255, 0.03);
+    margin-bottom: 0.3rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+}
+
+.exposed-section {
+    margin-bottom: 1rem;
+}
+
+h3 {
+    font-size: 1rem;
+    color: var(--text-primary);
+    margin-bottom: 0.5rem;
+}
+
+.small-text {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+}
+
+.primary-btn.small {
+    padding: 0.5rem;
+    font-size: 0.9rem;
+}
+
+.divider {
+    border: 0;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 1rem 0;
+}
+
+.status-text {
+    font-size: 0.85rem;
+    margin-top: 0.5rem;
+    font-weight: 600;
+}
+
+.status-safe {
+    color: var(--success);
+}
+
+.status-danger {
+    color: var(--danger);
+}
+
+.tree-controls {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    align-items: center;
+}
+
+.level-input {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    margin-left: auto;
+}
+
+.level-input input {
+    width: 50px;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--text-primary);
+    text-align: center;
+}

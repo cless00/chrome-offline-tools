@@ -1,0 +1,62 @@
+[
+    {
+        "id": "u_001",
+        "isActive": true,
+        "balance": 2450.50,
+        "profile": {
+            "name": "Alice Johnson",
+            "age": 28,
+            "roles": [
+                "admin",
+                "editor"
+            ],
+            "settings": {
+                "theme": "dark",
+                "notifications": true
+            }
+        },
+        "lastLogin": null,
+        "tags": [
+            "vip",
+            "early-adopter"
+        ]
+    },
+    {
+        "id": "u_002",
+        "isActive": false,
+        "balance": 0,
+        "profile": {
+            "name": "Bob Smith",
+            "age": 34,
+            "roles": [
+                "viewer"
+            ],
+            "settings": {
+                "theme": "light",
+                "notifications": false
+            }
+        },
+        "lastLogin": "2024-12-01T10:00:00Z",
+        "tags": []
+    },
+    {
+        "id": "u_003",
+        "isActive": true,
+        "balance": 99999.99,
+        "profile": {
+            "name": "Charlie Brown",
+            "age": 45,
+            "roles": [
+                "moderator"
+            ],
+            "settings": {
+                "theme": "system",
+                "notifications": true
+            }
+        },
+        "lastLogin": "2024-12-07T09:30:00Z",
+        "tags": [
+            "staff"
+        ]
+    }
+]

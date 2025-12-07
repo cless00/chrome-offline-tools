@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Offline Tools</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <!-- Fonts (Google Fonts via Import in CSS or link here if online allowed, but this is offline) -->
+    <!-- We will use system fonts or offline accessible fonts for true offline support -->
+</head>
+
+<body>
+    <div id="app">
+        <header class="app-header">
+            <div class="logo">Offline Tools</div>
+            <nav class="main-nav">
+                <button class="nav-btn active" data-target="json">JSON Tools</button>
+                <button class="nav-btn" data-target="generator">Password Generator</button>
+            </nav>
+        </header>
+
+        <main class="content-area">
+            <!-- JSON Tools View (Default) -->
+            <section id="view-json" class="view active">
+                <div class="card">
+                    <h2>JSON Tools</h2>
+                    <p class="description">Format, minify, and visualize JSON.</p>
+
+                    <div class="button-group">
+                        <button id="btn-beautify" class="secondary-btn">Beautify</button>
+                        <button id="btn-minify" class="secondary-btn">Minify</button>
+                        <button id="btn-unescape" class="secondary-btn">Unescape</button>
+                        <button id="btn-table" class="secondary-btn">Table View</button>
+                        <button id="btn-clear" class="secondary-btn" style="margin-left: auto;">Clear</button>
+                    </div>
+
+                    <div class="editor-container">
+                        <pre id="highlighting-pre"
+                            aria-hidden="true"><code id="highlighting-content" class="language-json"></code></pre>
+                        <textarea id="json-input" class="code-editor" placeholder="Paste JSON here..."
+                            spellcheck="false"></textarea>
+                    </div>
+
+                    <div id="tree-controls" class="tree-controls" style="display: none;">
+                        <button id="btn-expand-all" class="secondary-btn small">Expand All</button>
+                        <button id="btn-collapse-all" class="secondary-btn small">Collapse All</button>
+                        <button id="btn-copy-values" class="secondary-btn small">Copy Table</button>
+                        <div class="level-input">
+                            <label for="expand-level" style="font-size: 0.8rem; margin-right: 5px;">Level: <span
+                                    id="level-val">2</span></label>
+                            <input type="range" id="expand-level" min="1" max="10" value="2" step="1" list="tick-marks"
+                                style="width: 200px;">
+                            <datalist id="tick-marks">
+                                <option value="1"></option>
+                                <option value="2"></option>
+                                <option value="3"></option>
+                                <option value="4"></option>
+                                <option value="5"></option>
+                                <option value="6"></option>
+                                <option value="7"></option>
+                                <option value="8"></option>
+                                <option value="9"></option>
+                                <option value="10"></option>
+                            </datalist>
+                        </div>
+                    </div>
+
+                    <div id="json-output-container" class="output-container" style="display: none;">
+                        <!-- Table will be injected here -->
+                    </div>
+                </div>
+            </section>
+
+            <!-- Generator View -->
+            <section id="view-generator" class="view">
+                <div class="card">
+                    <h2>Password Generator</h2>
+                    <div class="password-display-container">
+                        <div id="password-output" class="password-output">Your Password Here</div>
+                        <button id="copy-btn" class="icon-btn" title="Copy">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="controls">
+                        <div class="control-group">
+                            <label>Length: <span id="length-val">16</span></label>
+                            <input type="range" id="length-slider" min="4" max="64" value="16">
+                        </div>
+
+                        <div class="control-group checkbox-group">
+                            <label><input type="checkbox" id="use-upper" checked> Uppercase (A-Z)</label>
+                            <label><input type="checkbox" id="use-lower" checked> Lowercase (a-z)</label>
+                            <label><input type="checkbox" id="use-numbers" checked> Numbers (0-9)</label>
+                            <label><input type="checkbox" id="use-symbols" checked> Symbols (!@#$)</label>
+                        </div>
+
+                        <div class="control-group">
+                            <label>Batch Count (1-50):</label>
+                            <input type="number" id="batch-count" value="1" min="1" max="50">
+                        </div>
+
+                        <button id="generate-btn" class="primary-btn">Generate</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script type="module" src="assets/js/main.js"></script>
+</body>
+
+</html>
