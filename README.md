@@ -1,6 +1,7 @@
 # Offline Tools - Chrome 확장 프로그램
 
 완전한 오프라인 환경에서 작동하는 보안 유틸리티 Chrome 확장 프로그램입니다.
+A secure utility Chrome extension that works completely offline.
 
 ## 주요 기능
 
@@ -19,6 +20,24 @@
 - 문자 유형 선택: 대문자, 소문자, 숫자, 특수문자
 - 일괄 생성 (1-50개)
 - 원클릭 클립보드 복사
+
+## Features (English)
+
+### 🔧 JSON Tools
+- **Beautify**: Format JSON with proper indentation
+- **Minify**: Compress JSON to a single line
+- **Unescape**: Decode escaped JSON strings
+- **Table View**: Visualize JSON as an interactive tree table
+  - Expand/collapse nodes
+  - Depth level slider
+  - Copy row, key, or value individually
+
+### 🔐 Password Generator
+- Cryptographically secure random generation
+- Adjustable length (4-64 characters)
+- Character type selection: uppercase, lowercase, numbers, special characters
+- Batch generation (1-50 passwords)
+- One-click clipboard copy
 
 ## 설치 방법
 
@@ -47,8 +66,29 @@
 - 외부 의존성 없음 (완전 오프라인)
 - Manifest V3
 
-## 개인정보 보호
-이 확장 프로그램은 완전히 오프라인으로 작동합니다. 어떠한 데이터도 외부 서버로 전송되지 않습니다.
+## 개인정보 취급방침
+
+**Offline Tools 확장 프로그램은 사용자의 개인정보를 수집, 저장 또는 전송하지 않습니다.**
+
+이 확장 프로그램은 완전한 오프라인 환경에서 작동하며:
+- 사용자 데이터를 외부 서버로 전송하지 않습니다
+- 사용자 정보를 저장하지 않습니다
+- 분석 도구나 추적 도구를 사용하지 않습니다
+- 네트워크 요청을 수행하지 않습니다
+
+모든 JSON 처리 및 비밀번호 생성 작업은 사용자의 브라우저 내에서 로컬로만 수행됩니다.
+
+### Privacy Policy (English)
+
+**Offline Tools does not collect, store, or transmit any user data.**
+
+This extension operates entirely offline and:
+- Does not send any data to external servers
+- Does not store any user information
+- Does not use analytics or tracking tools
+- Does not make any network requests
+
+All JSON processing and password generation operations are performed locally within your browser.
 
 ## 라이선스
 MIT
